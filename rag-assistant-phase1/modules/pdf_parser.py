@@ -146,6 +146,10 @@ class PDFParser:
             logger.error(f"File not found: {pdf_path}")
             raise FileNotFoundError(f"The file {pdf_path} was not found")
             
+        except PyPDF2.errors.PdfReadError as e:
+            logger.error(f"Invalid or corrupted PDF file {pdf_path}: {str(e)}")
+            raise ValueError(f"Invalid or corrupted PDF file: {str(e)}")
+            
         except Exception as e:
             logger.error(f"Error extracting text from PDF {pdf_path}: {str(e)}")
             raise Exception(f"Failed to extract text from PDF: {str(e)}")
