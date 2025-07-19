@@ -189,49 +189,55 @@ rag-assistant-phase1/
 5. **Query Processing** → Find relevant chunks via similarity search
 6. **Answer Generation** → Use local LLM with retrieved context
 
-## 🛠️ Installation
+## 🛠️ Installation & Setup
 
 ### Prerequisites
-- Python 3.8+ (no specific version required)
+- Python 3.8+ (3.9+ recommended for better transformer support)
 - 8GB+ RAM recommended for local LLM inference
 - Git for version control
+- Windows PowerShell / Command Prompt
 
-### Setup Instructions
+### Phase 1 Setup Instructions
 
 1. **Clone and navigate to project**:
-```bash
+```powershell
 git clone <repository-url>
 cd rag-assistant-phase1
 ```
 
 2. **Create virtual environment**:
-```bash
+```powershell
 python -m venv .venv
-# Windows
 .venv\Scripts\activate
-# Linux/Mac
-source .venv/bin/activate
 ```
 
 3. **Install dependencies**:
-```bash
+```powershell
 pip install -r requirements.txt
 ```
 
-4. **Verify installation**:
-```bash
+4. **Generate sample data** (if needed):
+```powershell
+python create_sample_pdf.py
+```
+
+5. **Verify installation**:
+```powershell
 python main.py --help
 ```
 
 ## 🎮 Usage
 
-### Basic Usage
-```bash
+### Phase 1 - Basic Usage
+```powershell
 # Process a PDF and ask questions
-python main.py --pdf "sample_data/sample_document.pdf" --query "What is the main topic?"
+python main.py --pdf "sample_data\sample_document.pdf" --query "What is the main topic?"
 
 # Interactive mode
 python main.py --interactive
+
+# Test with generated sample content
+python main.py --pdf "sample_data\sample_content.txt" --query "How do I troubleshoot LED blinking patterns?"
 ```
 
 ### Python API Usage
@@ -281,19 +287,19 @@ TOP_K_RETRIEVAL = 5
 ## 🧪 Testing
 
 ### Run All Tests
-```bash
-pytest tests/ -v
+```powershell
+pytest tests\ -v
 ```
 
 ### Run with Coverage
-```bash
-pytest tests/ --cov=modules --cov-report=html
+```powershell
+pytest tests\ --cov=modules --cov-report=html
 ```
 
 ### Manual Testing
-```bash
+```powershell
 # Test individual modules
-python -m modules.pdf_parser sample_data/sample_document.pdf
+python -m modules.pdf_parser sample_data\sample_document.pdf
 python -m modules.embedder --test
 ```
 
@@ -322,15 +328,17 @@ HF_MODEL_NAME = "distilgpt2"  # Lightweight alternative
 ```
 
 **2. Slow Performance**
-```bash
+```powershell
 # Solution: Reduce model size or chunk count
+# In config.py, try:
 CHUNK_SIZE = 800  # Larger chunks = fewer embeddings
 TOP_K_RETRIEVAL = 3  # Fewer context chunks
 ```
 
 **3. Poor Answer Quality**
-```bash
+```powershell
 # Solution: Adjust retrieval parameters
+# In config.py:
 CHUNK_OVERLAP = 100  # More context overlap
 TOP_K_RETRIEVAL = 7  # More relevant context
 ```
@@ -350,6 +358,26 @@ TOP_K_RETRIEVAL = 7  # More relevant context
 - Add type hints where applicable
 - Write unit tests for new functions
 
+## 📅 Development Timeline
+
+| Phase | Owner   | Target Date | Status |
+| ----- | ------- | ----------- | ------ |
+| 1     | Bharath | July 23     | ✅ In Development |
+| 2     | Suhas   | July 25     | 🔄 Planned |
+| 3     | Sreeya  | July 27     | 🔄 Planned |
+| 4     | Kiran   | July 28     | 🔄 Planned |
+| 5     | Vipul   | July 28     | 🔄 Planned |
+
+## 📌 Team Contributors
+
+* **Bharath** – Phase 1 (Core RAG Pipeline & Architecture)
+* **Suhas** – Phase 2 (Speech Recognition & Multilingual Support)
+* **Sreeya** – Phase 3 (AI Avatar Integration)
+* **Kiran** – Phase 4 (Streamlit Web Interface - Text)
+* **Vipul** – Phase 5 (Voice UI & Production Deployment)
+
+---
+
 ## 🎯 Phase 1 Completion Checklist
 - [x] Project structure and environment
 - [x] PDF text extraction (`pdf_parser.py`)
@@ -361,21 +389,34 @@ TOP_K_RETRIEVAL = 7  # More relevant context
 - [x] CLI interface (`main.py`)
 - [x] Error handling and logging
 - [x] Documentation and examples
+- [x] Sample data generation (`create_sample_pdf.py`)
 
-## 🚀 Next Steps (Future Phases)
-- **Phase 2**: Multilingual support and speech integration
-- **Phase 3**: Web interface with Streamlit
-- **Phase 4**: Advanced features (memory, chat history)
+## 🚀 Next Development Steps
+
+### Immediate (Phase 1 Completion)
+- [ ] Final testing and optimization
+- [ ] Performance benchmarking
+- [ ] Documentation polish
+- [ ] Code review and refactoring
+
+### Upcoming Phases
+- **Phase 2**: Speech I/O and multilingual translation
+- **Phase 3**: AI avatar video generation
+- **Phase 4**: Web UI with Streamlit
+- **Phase 5**: Voice interface and deployment
 
 ## 🤝 Contributing
 1. Fork the repository
-2. Create feature branch
-3. Make changes with tests
+2. Create feature branch (`git checkout -b feature/new-feature`)
+3. Make changes with comprehensive tests
 4. Submit pull request with clear description
+5. Follow existing code patterns and documentation standards
 
-## 📝 License
+## � License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-**Built with ❤️ for efficient, local RAG implementations**
+**🎯 Building the future of accessible, multilingual AI assistance - one phase at a time!**
+
+*Current Status: Phase 1 (Core RAG Pipeline) - Ready for Phase 2 Integration*
