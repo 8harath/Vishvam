@@ -1,12 +1,4 @@
-"""
-Sample PDF content generator for testing RAG pipeline
-"""
 
-def create_sample_pdf():
-    """Create a sample PDF document for testing purposes."""
-    
-    # Sample content about a fictional product manual
-    content = """
     SMART HOME LED CONTROLLER
     MODEL: SH-LED-2024
     USER MANUAL AND WARRANTY GUIDE
@@ -126,15 +118,4 @@ def create_sample_pdf():
     - Disconnect power before making connections
     
     Thank you for choosing Smart Home LED Controller. For the latest firmware updates and additional features, please visit our website regularly.
-    """
     
-    return content
-
-# Generate simple text-based PDF content
-sample_content = create_sample_pdf()
-
-# Save as a simple text file that can be converted to PDF
-with open("c:\\Users\\USER\\Vishvam\\rag-assistant-phase1\\sample_data\\sample_content.txt", "w", encoding="utf-8") as f:
-    f.write(sample_content)
-
-print("Sample content created successfully!")
