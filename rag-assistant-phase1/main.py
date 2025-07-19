@@ -22,6 +22,9 @@ def main():
 Examples:
   python main.py --pdf sample_data/sample_document.pdf
   python main.py --pdf sample_data/sample_document.pdf --info
+  python main.py --pdf sample_data/sample_document.pdf --chunk
+  python main.py --pdf sample_data/sample_document.pdf --chunk --chunk-size 300 --chunk-overlap 30
+  python main.py --pdf sample_data/sample_document.pdf --pages --chunk
   python main.py --help
         """
     )
@@ -101,12 +104,36 @@ Examples:
                 print(f"✅ Successfully extracted {len(text)} characters")
                 print("-" * 50)
                 
-                # Show first 500 characters as preview
-                preview = text[:500] + "..." if len(text) > 500 else text
-                print(preview)
-                
-                if len(text) > 500:
-                    print(f"\n[Showing first 500 characters of {len(text)} total]")
+                # Chunk text if requested
+                if args.chunk:
+                    print(f"🧩 Chunking text (size: {args.chunk_size}, overlap: {args.chunk_overlap})")
+                    text_splitter = TextSplitter(
+                        chunk_size=args.chunk_size, 
+                        chunk_overlap=args.chunk_overlap
+                    )
+                    chunks = text_splitter.chunk_text(text)
+                    stats = text_splitter.get_chunk_stats(chunks)
+                    
+                    print(f"✅ Generated {stats['total_chunks']} chunks")
+                    print(f"   Average chunk size: {stats['average_chunk_size']:.1f} characters")
+                    print(f"   Size range: {stats['min_chunk_size']} - {stats['max_chunk_size']} characters")
+                    print("-" * 50)
+                    
+                    # Show first few chunks as preview
+                    for i, chunk in enumerate(chunks[:3], 1):
+                        print(f"\n📄 Chunk {i} ({len(chunk)} chars):")
+                        preview = chunk[:200] + "..." if len(chunk) > 200 else chunk
+                        print(preview)
+                    
+                    if len(chunks) > 3:
+                        print(f"\n... and {len(chunks) - 3} more chunks")
+                else:
+                    # Show first 500 characters as preview
+                    preview = text[:500] + "..." if len(text) > 500 else text
+                    print(preview)
+                    
+                    if len(text) > 500:
+                        print(f"\n[Showing first 500 characters of {len(text)} total]")
             else:
                 print("❌ No text could be extracted from the PDF")
     
