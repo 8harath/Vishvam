@@ -1,9 +1,50 @@
-# RAG Assistant Phase 1
+# 🧠 AI-Powered Voice-Driven Multilingual RAG Assistant
 
-## 🎯 Project Overview
-A modular Python-based Retrieval Augmented Generation (RAG) system for PDF document Q&A using open-source models and vector similarity search.
+## 🔍 Overview
 
-## 🚀 Features
+An intelligent assistant that allows users to upload PDFs (manuals, legal docs, research papers), ask questions via **text or speech**, and receive answers **in multiple languages** — as text, voice, or AI-generated avatar video.
+
+This assistant leverages **open-source LLMs**, **document RAG pipelines**, and **voice/multilingual support** for accessibility across diverse audiences.
+
+---
+
+## 🎯 Key Features
+
+- 📄 **PDF Upload** for custom knowledge base
+- 🧠 **Open-source RAG pipeline** with DeepSeek / Mistral
+- 🔊 **Speech I/O**: Ask and receive answers via voice
+- 🌍 **Multilingual detection + translation**
+- 🧏 **AI Avatar with lip-synced answers**
+- 🌐 **Streamlit UI for interactive use**
+
+---
+
+## 🧪 Example Use Cases
+
+- Legal assistants for multilingual clients  
+- Voice-driven appliance manuals  
+- Rural education tools in local languages  
+- Elderly-friendly voice assistants
+
+---
+
+## 🔧 Tech Stack
+
+| Component | Tech |
+|----------|------|
+| LLM       | DeepSeek / Mistral via Transformers |
+| Embeddings | SentenceTransformers + FAISS |
+| PDF Parsing | PyPDF2 / PyMuPDF |
+| STT       | SpeechRecognition / Whisper |
+| TTS       | gTTS |
+| Language Detection | langdetect + translate |
+| UI        | Streamlit + streamlit-audio-recorder |
+| Avatar    | D-ID API |
+
+---
+
+## 🚀 Current Phase 1 Features
+
 - **PDF Text Extraction**: Extract and process text from PDF documents
 - **Smart Text Chunking**: Split documents into semantically meaningful chunks
 - **Vector Embeddings**: Generate embeddings using SentenceTransformers
@@ -11,9 +52,118 @@ A modular Python-based Retrieval Augmented Generation (RAG) system for PDF docum
 - **Local LLM Integration**: Support for both Hugging Face Transformers and Ollama
 - **Modular Architecture**: Clean, testable, and extensible codebase
 
-## 🏗️ Architecture
+## 🧩 Phase-wise Development Roadmap
 
-### Project Structure
+---
+
+### ✅ **Phase 1: Core RAG Logic & Basic Text Interaction** (Current Phase)
+**Status**: In Development  
+**Target**: July 23
+
+#### 📌 Completed Tasks:
+1. ✅ Setup VS Code project + GitHub repo  
+2. ✅ Implement PDF parsing (`PyPDF2`)  
+3. ✅ Add text chunking logic  
+4. ✅ Generate embeddings using `SentenceTransformers`  
+5. ✅ Load and query open-source LLM (DeepSeek / Mistral)  
+6. ✅ Build RAG core pipeline (parse → embed → retrieve → respond)  
+7. ✅ Integrate everything in a simple CLI via `main.py`
+
+> ✅ **Current Output**: Given a PDF + user question, return context-aware text response using RAG.
+
+---
+
+### 🔄 **Phase 2: Speech I/O and Multilingual Support**  
+**Owner**: Suhas  
+**Target**: July 25
+
+#### 📌 Planned Tasks:
+1. Add microphone input using `SpeechRecognition`  
+2. Add voice output using `gTTS`  
+3. Implement language detection (`langdetect`)  
+4. Translate queries to English using `translate`  
+5. Translate answers back to user language  
+6. Test full speech → RAG → speech flow
+
+> 🎯 **Expected Output**: Ask questions via mic, get spoken answers in your language.
+
+---
+
+### 🔄 **Phase 3: AI Avatar Integration**  
+**Owner**: Sreeya  
+**Target**: July 27
+
+#### 📌 Planned Tasks:
+1. Integrate D-ID API for avatar generation  
+2. Convert audio/text to lip-synced video response  
+3. Modularize avatar code for use in Streamlit later
+
+> 🎯 **Expected Output**: AI avatar delivers spoken responses visually.
+
+---
+
+### 🔄 **Phase 4: Streamlit Interface - Text & File UI**  
+**Owner**: Kiran  
+**Target**: July 28
+
+#### 📌 Planned Tasks:
+1. UI for PDF upload  
+2. Text input for chat interface  
+3. Display text answers in chat  
+4. UI for choosing output language  
+5. Test full text-to-text loop in browser
+
+> � **Expected Output**: Browser app for PDF upload + text chat.
+
+---
+
+### 🔄 **Phase 5: Streamlit Interface - Voice & Avatar UI + Deployment**  
+**Owner**: Vipul  
+**Target**: July 28
+
+#### 📌 Planned Tasks:
+1. Add microphone component in Streamlit  
+2. Output TTS audio response via player  
+3. Display D-ID avatar video inline  
+4. Deploy app using Streamlit Cloud / HuggingFace Spaces
+
+> 🎯 **Expected Output**: End-to-end web demo with full voice + avatar interaction.
+
+---
+
+## �🏗️ Project Architecture
+
+### Full Project Structure (All Phases)
+```
+ai-rag-assistant/
+├── main.py                  # CLI entry point (Phase 1)
+├── requirements.txt         # Python dependencies
+├── README.md               # This comprehensive guide
+├── config.py               # Configuration settings
+├── .gitignore              # Git ignore rules
+├── modules/                # Core RAG modules
+│   ├── __init__.py         # Module initialization
+│   ├── pdf_parser.py       # PDF text extraction (Phase 1)
+│   ├── text_splitter.py    # Text chunking logic (Phase 1)
+│   ├── embedder.py         # Embedding generation (Phase 1)
+│   ├── vector_store.py     # FAISS vector storage (Phase 1)
+│   ├── rag_pipeline.py     # Main RAG orchestration (Phase 1)
+│   ├── speech_module.py    # STT/TTS functionality (Phase 2)
+│   ├── multilingual.py     # Translation & lang detection (Phase 2)
+│   ├── avatar_generator.py # D-ID API integration (Phase 3)
+├── frontend/               # Web UI components (Phases 4 & 5)
+│   ├── streamlit_ui.py     # Main Streamlit app
+│   ├── audio_components.py # Voice recording widgets
+│   ├── avatar_components.py# Avatar display widgets
+├── sample_data/            # Test documents and data
+│   ├── sample_content.txt  # Generated sample content
+│   └── sample_document.html# Sample HTML document
+├── tests/                  # Unit tests for all modules
+├── assets/                 # Static assets (images, icons)
+└── docs/                   # Additional documentation
+```
+
+### Current Phase 1 Structure
 ```
 rag-assistant-phase1/
 ├── modules/
