@@ -170,7 +170,7 @@ def test_with_actual_pdf():
             print(f"✅ Generated {len(chunks)} chunks from PDF content")
             
             stats = splitter.get_chunk_stats(chunks)
-            print(f"📊 PDF Chunk Statistics:")
+            print("📊 PDF Chunk Statistics:")
             for key, value in stats.items():
                 if isinstance(value, float):
                     print(f"  {key}: {value:.1f}")
