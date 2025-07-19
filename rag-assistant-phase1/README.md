@@ -254,14 +254,75 @@ python main.py --help
 
 ### Phase 1 - Basic Usage
 ```powershell
-# Process a PDF and ask questions
-python main.py --pdf "sample_data\sample_document.pdf" --query "What is the main topic?"
+# Basic PDF processing
+python main.py --pdf "sample_data\sample_document.pdf"
 
-# Interactive mode
-python main.py --interactive
+# PDF processing with text chunking
+python main.py --pdf "sample_data\sample_document.pdf" --chunk
 
-# Test with generated sample content
-python main.py --pdf "sample_data\sample_content.txt" --query "How do I troubleshoot LED blinking patterns?"
+# Custom chunk parameters
+python main.py --pdf "sample_data\sample_document.pdf" --chunk --chunk-size 300 --chunk-overlap 30
+
+# Extract PDF info and process page by page
+python main.py --pdf "sample_data\sample_document.pdf" --info --pages --chunk
+
+# Get help
+python main.py --help
+```
+
+### Text Chunking System Usage
+
+#### Using the TextSplitter Class
+```python
+from modules.text_splitter import TextSplitter
+
+# Initialize with custom parameters
+splitter = TextSplitter(chunk_size=500, chunk_overlap=50)
+
+# Chunk text with word boundary preservation
+text = "Your large document content here..."
+chunks = splitter.chunk_text(text, preserve_word_boundaries=True)
+
+# Get statistics about chunks
+stats = splitter.get_chunk_stats(chunks)
+print(f"Generated {stats['total_chunks']} chunks")
+print(f"Average size: {stats['average_chunk_size']:.1f} characters")
+
+# Save chunks for inspection
+splitter.save_chunks_to_file(chunks, "output/chunked_text.txt")
+```
+
+#### Using the Convenience Function
+```python
+from modules.text_splitter import chunk_text
+
+# Simple chunking with defaults (500 chars, 50 overlap)
+chunks = chunk_text("Your text content here...")
+
+# Custom parameters
+chunks = chunk_text(
+    text="Your text content here...",
+    chunk_size=300,
+    chunk_overlap=25
+)
+```
+
+#### Future Enhancement: Sentence-Based Chunking
+```python
+# Available but optimized for future use
+sentence_chunks = splitter.chunk_text_by_sentences(text)
+```
+
+### Testing and Validation
+```powershell
+# Run comprehensive test suite
+python test_text_splitter.py
+
+# Run validation for success criteria
+python validate_step3.py
+
+# Simple demo
+python demo_text_splitter.py
 ```
 
 ### Python API Usage
