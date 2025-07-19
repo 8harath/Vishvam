@@ -11,6 +11,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "modules"))
 
 from modules.pdf_parser import PDFParser
+from modules.text_splitter import TextSplitter
 
 def main():
     """Main CLI application."""
