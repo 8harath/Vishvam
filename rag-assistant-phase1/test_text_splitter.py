@@ -158,7 +158,7 @@ def test_with_actual_pdf():
         
         # Extract text using PDF parser
         parser = PDFParser()
-        extracted_text = parser.extract_text(str(pdf_path))
+        extracted_text = parser.extract_text_from_pdf(str(pdf_path))
         
         if extracted_text:
             print(f"✅ Extracted {len(extracted_text)} characters from PDF")
