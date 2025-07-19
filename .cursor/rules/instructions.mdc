@@ -1,0 +1,31 @@
+project:
+  name: AI-Powered Voice-Driven Multilingual RAG Assistant
+  goal: |
+    Build a RAG pipeline that enables users to upload PDFs, query them via text or voice,
+    and receive context-aware, multilingual answers via text or speech—optionally animated with an AI avatar.
+
+instructions:
+  - This project is modular. Stick to separation of concerns. Each phase outputs reusable components.
+  - Focus only on Phase 1 for now. Your job is to scaffold and implement the RAG core.
+  - Use clean, commented Python code. Each function should be independently testable.
+  - Do not generate Streamlit UI or avatar code in this phase.
+  - Respect this module structure:
+
+  - Use the following libraries only in Phase 1:
+      PyMuPDF, sentence-transformers, faiss-cpu, requests
+  - Use `all-MiniLM-L6-v2` as the embedding model.
+  - Queries must flow through: parse -> chunk+embed -> store in FAISS -> retrieve -> LLM generate
+  - Include a minimal `main.py` to test the full RAG flow from one PDF + one sample question.
+
+agent_mode:
+  enabled: true
+  behavior:
+    - Assist with breaking down Phase 1 into sub-functions.
+    - Suggest modular improvements.
+    - Do not scaffold UI or speech features until Phase 2.
+    - Prioritize clean APIs between modules.
+
+examples:
+  - Suggest function signatures for `chunk_pdf_text(text: str) -> List[str]`
+  - Propose a way to serialize FAISS vector DB
+  - Help debug embedding dimension mismatch errors
