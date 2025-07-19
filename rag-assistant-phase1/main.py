@@ -44,6 +44,26 @@ Examples:
         help="Extract text page by page"
     )
     
+    parser.add_argument(
+        "--chunk", 
+        action="store_true", 
+        help="Split extracted text into chunks"
+    )
+    
+    parser.add_argument(
+        "--chunk-size", 
+        type=int, 
+        default=500, 
+        help="Size of each text chunk in characters (default: 500)"
+    )
+    
+    parser.add_argument(
+        "--chunk-overlap", 
+        type=int, 
+        default=50, 
+        help="Overlap between chunks in characters (default: 50)"
+    )
+    
     args = parser.parse_args()
     
     if not args.pdf:
