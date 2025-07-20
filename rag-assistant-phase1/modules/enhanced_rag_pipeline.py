@@ -14,7 +14,7 @@ from .text_splitter import TextSplitter
 from .embedder import TextEmbedder
 from .llm_handler import create_llm_manager
 from .error_handler import (
-    RAGAssistantError, DocumentProcessingError, PDFProcessingError,
+    DocumentProcessingError, PDFProcessingError,
     EmbeddingGenerationError, LLMProcessingError, MemoryError,
     get_logger, handle_exceptions, retry_on_failure, error_context,
     memory_monitor, ProgressTracker, ValidationUtils
