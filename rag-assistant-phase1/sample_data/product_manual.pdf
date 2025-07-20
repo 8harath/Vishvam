@@ -1,0 +1,148 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+>>
+>>
+>>
+endobj
+
+4 0 obj
+<<
+/Length 2100
+>>
+stream
+BT
+/F1 12 Tf
+50 750 Td
+(SmartHome Pro WiFi Router Model X500) Tj
+0 -30 Td
+(User Manual and Warranty Information) Tj
+0 -50 Td
+
+(PRODUCT OVERVIEW) Tj
+0 -20 Td
+(The SmartHome Pro X500 is a high-performance WiFi 6 router designed for modern homes.) Tj
+0 -15 Td
+(Features dual-band connectivity, advanced security, and smart device management.) Tj
+0 -30 Td
+
+(TECHNICAL SPECIFICATIONS) Tj
+0 -20 Td
+(- WiFi Standard: IEEE 802.11ax (WiFi 6)) Tj
+0 -15 Td
+(- Maximum Speed: Up to 3000 Mbps) Tj
+0 -15 Td
+(- Frequency Bands: 2.4GHz and 5GHz) Tj
+0 -15 Td
+(- Coverage: Up to 3000 sq ft) Tj
+0 -15 Td
+(- Ethernet Ports: 4 Gigabit LAN ports) Tj
+0 -15 Td
+(- Power Consumption: 25W maximum) Tj
+0 -30 Td
+
+(SETUP INSTRUCTIONS) Tj
+0 -20 Td
+(1. Connect the power adapter to the router and plug into wall outlet) Tj
+0 -15 Td
+(2. Connect ethernet cable from modem to WAN port on router) Tj
+0 -15 Td
+(3. Download the SmartHome app from your device app store) Tj
+0 -15 Td
+(4. Follow in-app setup wizard to configure network settings) Tj
+0 -15 Td
+(5. Create your WiFi network name and password) Tj
+0 -30 Td
+
+(TROUBLESHOOTING) Tj
+0 -20 Td
+(Problem: No internet connection) Tj
+0 -15 Td
+(Solution: Check all cable connections and restart both modem and router) Tj
+0 -15 Td
+(Problem: Slow speeds) Tj
+0 -15 Td
+(Solution: Place router in central location away from interference) Tj
+0 -15 Td
+(Problem: Cannot connect devices) Tj
+0 -15 Td
+(Solution: Reset router by holding reset button for 10 seconds) Tj
+0 -30 Td
+
+(WARRANTY INFORMATION) Tj
+0 -20 Td
+(LIMITED WARRANTY: This product is covered under a 3-year limited warranty) Tj
+0 -15 Td
+(from the date of purchase. Warranty covers manufacturing defects only.) Tj
+0 -15 Td
+(WARRANTY EXCLUSIONS: Damage from misuse, water, or power surges not covered.) Tj
+0 -15 Td
+(TO CLAIM WARRANTY: Contact SmartHome support at 1-800-SMARTHOME) Tj
+0 -15 Td
+(or visit support.smarthomepro.com with proof of purchase.) Tj
+0 -15 Td
+(REPLACEMENT: Defective units will be replaced free of charge during) Tj
+0 -15 Td
+(warranty period. Customer responsible for return shipping costs.) Tj
+0 -30 Td
+
+(CUSTOMER SUPPORT) Tj
+0 -20 Td
+(Phone: 1-800-SMARTHOME (24/7 support)) Tj
+0 -15 Td
+(Email: support@smarthomepro.com) Tj
+0 -15 Td
+(Website: www.smarthomepro.com/support) Tj
+0 -15 Td
+(Live Chat: Available on website 9AM-9PM EST) Tj
+
+ET
+endstream
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000287 00000 n 
+0000002439 00000 n 
+trailer
+<<
+/Size 6
+/Root 1 0 R
+>>
+startxref
+2524
+%%EOF
