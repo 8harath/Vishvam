@@ -4,16 +4,15 @@ Tests the embedder module with sample text chunks
 """
 
 import sys
-import os
 from pathlib import Path
+import numpy as np
 
 # Add the project root to Python path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-from modules.embedder import TextEmbedder, create_embedder
+from modules.embedder import create_embedder
 from modules.text_splitter import TextSplitter
-import numpy as np
 
 
 def test_embedder_basic():
@@ -59,7 +58,7 @@ def test_embedding_generation():
         print(f"Generating embeddings for {len(sample_chunks)} chunks...")
         embeddings = embedder.embed_chunks(sample_chunks)
         
-        print(f"✓ Embeddings generated successfully")
+        print("✓ Embeddings generated successfully")
         print(f"✓ Shape: {embeddings.shape}")
         print(f"✓ Data type: {embeddings.dtype}")
         
@@ -68,7 +67,7 @@ def test_embedding_generation():
         assert embeddings.shape[1] == embedder.embedding_dimension, "Embedding dimension mismatch"
         assert np.all(np.isfinite(embeddings)), "Embeddings contain invalid values"
         
-        print(f"✓ All validation checks passed")
+        print("✓ All validation checks passed")
         
         return embeddings, sample_chunks
     
@@ -174,7 +173,7 @@ def test_with_text_splitter():
             print(f"Best match (chunk {best_match_idx + 1}, similarity: {similarities[best_match_idx]:.4f}):")
             print(f"'{chunks[best_match_idx][:100]}...'")
         
-        print(f"\n✅ Text splitter integration test passed!")
+        print("\n✅ Text splitter integration test passed!")
         return True
         
     except Exception as e:
