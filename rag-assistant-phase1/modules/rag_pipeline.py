@@ -8,8 +8,7 @@ all components: PDF parsing → Chunking → Embedding → Retrieval → LLM que
 import os
 import time
 import logging
-from typing import Dict, List, Optional, Tuple, Any
-from pathlib import Path
+from typing import Dict, List, Optional, Any
 
 from .pdf_parser import PDFParser
 from .text_splitter import TextSplitter
