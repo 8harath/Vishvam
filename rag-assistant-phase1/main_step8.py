@@ -144,9 +144,10 @@ def display_pipeline_status(rag_pipeline: RAGPipeline):
     status = rag_pipeline.get_pipeline_status()
     
     print(f"\n{Colors.OKBLUE}📊 Pipeline Status:{Colors.ENDC}")
-    print(f"   • Status: {status['status']}")
-    print(f"   • Components: {', '.join(status['components'])}")
-    print(f"   • Configuration: {status['configuration']}")
+    print(f"   • Ready: {rag_pipeline.is_ready}")
+    print(f"   • Components: {', '.join(status.get('components', []))}")
+    if 'configuration' in status:
+        print(f"   • Configuration: {status['configuration']}")
     
     if status.get('embedding_stats'):
         stats = status['embedding_stats']
