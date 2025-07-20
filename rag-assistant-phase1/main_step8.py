@@ -116,7 +116,6 @@ def interactive_mode(rag_pipeline: RAGPipeline):
             
             # Process the question
             print(f"\n{Colors.OKBLUE}🔍 Searching for relevant information...{Colors.ENDC}")
-            start_time = time.time()
             
             result = rag_pipeline.generate_answer(question)
             
@@ -285,7 +284,7 @@ Examples:
             print_error("Failed to load and process PDF document")
             sys.exit(1)
         
-        print_success(f"Document loaded and processed successfully!")
+        print_success("Document loaded and processed successfully!")
         
         # Handle different modes
         if args.status:
