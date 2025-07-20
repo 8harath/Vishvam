@@ -27,7 +27,7 @@ def test_full_pipeline_integration():
         
         if os.path.exists(pdf_path):
             print("✅ Found sample PDF, parsing...")
-            text = parser.parse_pdf(pdf_path)
+            text = parser.extract_text_from_pdf(pdf_path)
             print(f"✅ PDF parsed: {len(text)} characters")
         else:
             print("⚠️  Sample PDF not found, using test text...")
