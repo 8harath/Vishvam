@@ -157,7 +157,7 @@ def demo_rag_pipeline():
             # Display results
             if result['success']:
                 print(f"✅ Answer: {result['answer']}")
-                print(f"📊 Performance:")
+                print("📊 Performance:")
                 print(f"   - Retrieval: {result['retrieval_time']:.3f}s")
                 print(f"   - Generation: {result['generation_time']:.3f}s")
                 print(f"   - Total: {result['total_time']:.3f}s")
