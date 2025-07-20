@@ -46,27 +46,23 @@ def main():
     print("\n4. Testing Semantic Retrieval:")
     test_queries = [
         "warranty information",
-        "customer support contact",
+        "customer support contact", 
         "router setup instructions"
     ]
     
     for query in test_queries:
         print(f"\n   Query: '{query}'")
         
-        # Get embeddings for the query
-        query_embedding = rag_pipeline.embedder.generate_embeddings([query])
-        
-        # Retrieve similar chunks  
-        similar_chunks = rag_pipeline.embedder.retrieve_similar(
-            query_embedding[0], 
-            top_k=2, 
+        # Retrieve similar chunks using the embedder's method
+        similar_chunks = rag_pipeline.embedder.get_top_k_chunks(
+            query=query,
+            k=2,
             min_similarity=0.3
         )
         
         print(f"   Found {len(similar_chunks)} relevant chunks:")
-        for i, chunk in enumerate(similar_chunks, 1):
-            score = chunk.get('score', 0)
-            text_preview = chunk.get('text', '')[:80] + "..."
+        for i, (text, score, chunk_idx) in enumerate(similar_chunks, 1):
+            text_preview = text[:80] + "..." if len(text) > 80 else text
             print(f"      {i}. (Score: {score:.3f}) {text_preview}")
     
     print("\n" + "=" * 50)
