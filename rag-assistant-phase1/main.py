@@ -1,6 +1,6 @@
 """
 RAG Assistant Phase 1 - Main CLI Application
-Simple demonstration of PDF text extraction
+Now with semantic search and retrieval capabilities (Step 5)
 """
 
 import argparse
@@ -12,6 +12,8 @@ sys.path.append(str(Path(__file__).parent / "modules"))
 
 from modules.pdf_parser import PDFParser
 from modules.text_splitter import TextSplitter
+from modules.embedder import create_embedder
+from modules.vector_store import RAGRetriever
 
 def main():
     """Main CLI application."""
