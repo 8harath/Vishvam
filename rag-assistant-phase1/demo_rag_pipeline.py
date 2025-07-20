@@ -13,7 +13,7 @@ import logging
 # Add project root to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from modules.rag_pipeline import RAGPipeline, create_rag_pipeline
+from modules.rag_pipeline import create_rag_pipeline
 from config import LOG_FORMAT, DEFAULT_PDF_PATH
 
 # Configure logging
