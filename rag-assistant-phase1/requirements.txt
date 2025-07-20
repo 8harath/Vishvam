@@ -6,6 +6,7 @@ torch>=2.0.0
 transformers>=4.35.0
 numpy>=1.24.0
 scikit-learn>=1.3.0
+requests>=2.31.0
 
 # PDF creation for testing
 reportlab>=4.0.4
