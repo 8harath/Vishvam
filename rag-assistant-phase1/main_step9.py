@@ -4,10 +4,10 @@ RAG Assistant Phase 1 - Step 9: Production-Ready Main Application
 Enhanced with comprehensive error handling, logging, and robustness features
 """
 
-import os
 import sys
 import argparse
 import time
+import logging
 from pathlib import Path
 from typing import Dict, Any, Optional
 
