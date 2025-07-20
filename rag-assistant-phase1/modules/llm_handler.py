@@ -508,7 +508,7 @@ class LLMManager:
                 response = self.primary_llm.generate_response(
                     prompt, max_length, temperature
                 )
-                if response and not response.startswith("I encountered an error"):
+                if response and len(response.strip()) > 5:  # Valid response
                     return response
             except Exception as e:
                 logger.warning(f"Primary LLM failed: {str(e)}")
@@ -520,7 +520,7 @@ class LLMManager:
                 response = self.fallback_llm.generate_response(
                     prompt, max_length, temperature
                 )
-                if response:
+                if response and len(response.strip()) > 5:  # Valid response
                     return response
             except Exception as e:
                 logger.warning(f"Fallback LLM also failed: {str(e)}")
