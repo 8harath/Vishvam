@@ -44,7 +44,7 @@ def demo_step7_rag_pipeline():
         
         # Show pipeline status
         status = rag_pipeline.get_pipeline_status()
-        print(f"\n📊 Pipeline Status:")
+        print("\n📊 Pipeline Status:")
         print(f"   Ready: {status['is_ready']}")
         print(f"   Components: {list(status['components'].keys())}")
         print(f"   Configuration: {status['configuration']}")
