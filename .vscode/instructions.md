@@ -62,7 +62,7 @@ rag-assistant-phase1/
 - [x] Step 2: PDF Text Extraction Engine
 - [x] Step 3: Text Chunking System
 - [x] Step 4: Embedding Generation Pipeline
-- [ ] Step 5: Semantic Search & Retrieval
+- [x] Step 5: Semantic Search & Retrieval
 - [ ] Step 6: Open Source LLM Integration
 - [ ] Step 7: Core RAG Pipeline Assembly
 - [ ] Step 8: Main Application & Demo
