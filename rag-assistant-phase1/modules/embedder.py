@@ -7,9 +7,10 @@ vector representations using SentenceTransformer models for semantic search.
 
 import logging
 import numpy as np
-from typing import List, Optional
+from typing import List, Optional, Tuple
 from sentence_transformers import SentenceTransformer
 import torch
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -22,6 +23,7 @@ class TextEmbedder:
     
     This class provides functionality to convert text chunks into dense vector
     representations that capture semantic meaning for similarity search in RAG systems.
+    Enhanced with semantic search and retrieval capabilities.
     """
     
     def __init__(self, model_name: str = "all-MiniLM-L6-v2", device: Optional[str] = None):
@@ -53,6 +55,11 @@ class TextEmbedder:
             self.model = SentenceTransformer(model_name, device=device)
             self.embedding_dimension = self.model.get_sentence_embedding_dimension()
             logger.info(f"Model loaded successfully. Embedding dimension: {self.embedding_dimension}")
+            
+            # Initialize storage for embeddings and chunks
+            self.stored_embeddings: Optional[np.ndarray] = None
+            self.stored_chunks: List[str] = []
+            self.is_index_built = False
             
         except Exception as e:
             logger.error(f"Failed to load model '{model_name}': {str(e)}")
