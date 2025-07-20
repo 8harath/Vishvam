@@ -58,10 +58,10 @@ rag-assistant-phase1/
 
 ## 🎯 Current Status
 - [x] Project structure planning
-- [ ] Step 1: Foundation & Environment Setup
-- [ ] Step 2: PDF Text Extraction Engine
-- [ ] Step 3: Text Chunking System
-- [ ] Step 4: Embedding Generation Pipeline
+- [x] Step 1: Foundation & Environment Setup
+- [x] Step 2: PDF Text Extraction Engine
+- [x] Step 3: Text Chunking System
+- [x] Step 4: Embedding Generation Pipeline
 - [ ] Step 5: Semantic Search & Retrieval
 - [ ] Step 6: Open Source LLM Integration
 - [ ] Step 7: Core RAG Pipeline Assembly
