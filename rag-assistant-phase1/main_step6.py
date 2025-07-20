@@ -78,8 +78,7 @@ class RAGPipeline:
         # Text Splitter
         self.text_splitter = TextSplitter(
             chunk_size=chunk_size,
-            overlap_size=chunk_overlap,
-            min_chunk_size=50
+            chunk_overlap=chunk_overlap
         )
         
         # Text Embedder
