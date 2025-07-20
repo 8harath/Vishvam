@@ -316,7 +316,7 @@ class RobustMainApp:
                 print("📄 Document: None loaded")
             
             # Usage statistics
-            print(f"\n📈 Usage Statistics:")
+            print("\n📈 Usage Statistics:")
             print(f"   • Questions Asked: {self.total_questions_asked}")
             print(f"   • Successful Answers: {self.successful_answers}")
             if self.total_questions_asked > 0:
