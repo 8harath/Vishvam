@@ -356,8 +356,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **GitHub Issues**: [Report bugs or request features](https://github.com/8harath/Vishvam/issues)
 - **Documentation**: [Project Wiki](https://github.com/8harath/Vishvam/wiki)
-- **Email**: bharath@example.com
-
 ---
 
 ## 🙏 Acknowledgments
