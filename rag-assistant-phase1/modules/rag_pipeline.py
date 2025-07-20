@@ -14,12 +14,26 @@ from .pdf_parser import PDFParser
 from .text_splitter import TextSplitter
 from .embedder import TextEmbedder
 from .llm_handler import create_llm_manager
-from ..config import (
-    EMBEDDING_MODEL, CHUNK_SIZE, CHUNK_OVERLAP,
-    TOP_K_RETRIEVAL, SIMILARITY_THRESHOLD, FALLBACK_RESPONSE,
-    CONTEXT_SEPARATOR, MAX_CONTEXT_LENGTH, RAG_PROMPT_TEMPLATE,
-    LLM_BACKEND, HF_TEMPERATURE, MAX_PDF_SIZE_MB
-)
+
+# Import config - handle both relative and absolute imports
+try:
+    from ..config import (
+        EMBEDDING_MODEL, CHUNK_SIZE, CHUNK_OVERLAP,
+        TOP_K_RETRIEVAL, SIMILARITY_THRESHOLD, FALLBACK_RESPONSE,
+        CONTEXT_SEPARATOR, MAX_CONTEXT_LENGTH, RAG_PROMPT_TEMPLATE,
+        LLM_BACKEND, HF_TEMPERATURE, MAX_PDF_SIZE_MB
+    )
+except ImportError:
+    # Fallback to absolute import for direct execution
+    import sys
+    import os
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from config import (
+        EMBEDDING_MODEL, CHUNK_SIZE, CHUNK_OVERLAP,
+        TOP_K_RETRIEVAL, SIMILARITY_THRESHOLD, FALLBACK_RESPONSE,
+        CONTEXT_SEPARATOR, MAX_CONTEXT_LENGTH, RAG_PROMPT_TEMPLATE,
+        LLM_BACKEND, HF_TEMPERATURE, MAX_PDF_SIZE_MB
+    )
 
 # Configure logging
 logger = logging.getLogger(__name__)
