@@ -204,7 +204,7 @@ def demo_step7_rag_pipeline():
         print(f"Whitespace question: {'✅' if not invalid_result['success'] else '❌'} Handled correctly")
         
         # Document management
-        print(f"\n📋 Document management:")
+        print("\n📋 Document management:")
         for doc in processed_docs:
             print(f"   📄 {doc['path']}: {doc['chunk_count']} chunks")
         
@@ -221,7 +221,7 @@ def demo_step7_rag_pipeline():
         print("   ✓ Error handling and robustness implemented")
         print("   ✓ Performance monitoring and optimization ready")
         
-        print(f"\n🚀 RAG Assistant Phase 1 - Step 7 Successfully Complete!")
+        print("\n🚀 RAG Assistant Phase 1 - Step 7 Successfully Complete!")
         print("Ready for advanced RAG features, optimization, and production deployment.")
         
         return True
