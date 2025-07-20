@@ -165,9 +165,11 @@ def display_loaded_documents(rag_pipeline: RAGPipeline):
     print(f"\n{Colors.OKBLUE}📚 Loaded Documents:{Colors.ENDC}")
     for i, doc in enumerate(docs, 1):
         print(f"   {i}. {doc['path']}")
-        print(f"      • Size: {doc['size_mb']:.2f} MB")
+        print(f"      • Size: {doc['file_size_mb']:.2f} MB")
         print(f"      • Chunks: {doc['chunk_count']}")
-        print(f"      • Processing Time: {format_time(doc['processing_time'])}")
+        print(f"      • Processed: {doc['processed_at']}")
+        if doc.get('is_current'):
+            print("      • Status: Current document ✅")
 
 def run_demo_questions(rag_pipeline: RAGPipeline):
     """Run a set of demo questions to showcase the system."""
