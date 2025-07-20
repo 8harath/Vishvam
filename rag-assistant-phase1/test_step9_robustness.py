@@ -6,7 +6,6 @@ This test suite validates the enhanced error handling, logging, and robustness
 features implemented in Step 9.
 """
 
-import os
 import sys
 import tempfile
 import shutil
@@ -19,7 +18,6 @@ from typing import Dict, Any
 sys.path.append(str(Path(__file__).parent / "modules"))
 
 from modules.error_handler import (
-    RAGAssistantError, DocumentProcessingError, PDFProcessingError,
     get_logger, ValidationUtils, HealthChecker
 )
 from modules.enhanced_rag_pipeline import create_enhanced_rag_pipeline
