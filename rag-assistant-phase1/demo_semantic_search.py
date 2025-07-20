@@ -85,7 +85,7 @@ def chunk_documents(documents: List[str]) -> List[str]:
     
     all_chunks = []
     for doc in documents:
-        chunks = splitter.split_text(doc)
+        chunks = splitter.chunk_text(doc)
         all_chunks.extend(chunks)
     
     return all_chunks
