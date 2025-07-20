@@ -35,8 +35,8 @@ def main():
     # Show pipeline status
     print("\n3. Pipeline Status:")
     status = rag_pipeline.get_pipeline_status()
-    print(f"   Status: {status['status']}")
-    print(f"   Components: {', '.join(status['components'])}")
+    print(f"   Ready: {rag_pipeline.is_ready}")
+    print(f"   Components: {', '.join(status.get('components', []))}")
     if 'embedding_stats' in status:
         stats = status['embedding_stats']
         print(f"   Chunks: {stats['chunk_count']}")
