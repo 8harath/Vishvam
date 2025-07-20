@@ -133,7 +133,7 @@ def test_cli_help():
             print("✅ CLI help works correctly")
             return True
         else:
-            print(f"❌ CLI help failed")
+            print("❌ CLI help failed")
             return False
             
     except Exception as e:
