@@ -185,7 +185,7 @@ def demo_rag_pipeline():
         if final_status['embedding_stats']:
             print(f"🔢 Embedding stats: {final_status['embedding_stats']}")
         
-        print(f"⚙️  Configuration:")
+        print("⚙️  Configuration:")
         for key, value in final_status['configuration'].items():
             print(f"   - {key}: {value}")
         
@@ -201,7 +201,7 @@ def demo_rag_pipeline():
         
         # Test document listing
         if processed_docs:
-            print(f"\n📚 Processed documents:")
+            print("\n📚 Processed documents:")
             for doc in processed_docs:
                 print(f"   - {doc['path']}: {doc['chunk_count']} chunks, {doc['file_size_mb']:.2f}MB")
         
