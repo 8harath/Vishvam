@@ -123,7 +123,7 @@ class RAGPipeline:
             
             # Step 2: Split text into chunks
             logger.info("Step 2: Splitting text into chunks...")
-            chunks = self.text_splitter.split_text(text_content)
+            chunks = self.text_splitter.chunk_text(text_content)
             
             if not chunks:
                 logger.error("No chunks created from text")
@@ -321,7 +321,7 @@ def demo_complete_rag_pipeline():
             """
             
             # Process the sample text directly
-            chunks = rag.text_splitter.split_text(sample_text)
+            chunks = rag.text_splitter.chunk_text(sample_text)
             rag.embedder.store_embeddings(chunks)
             rag.is_ready = True
             
