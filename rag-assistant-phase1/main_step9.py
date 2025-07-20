@@ -17,7 +17,7 @@ sys.path.append(str(Path(__file__).parent / "modules"))
 from modules.rag_pipeline import RAGPipeline, create_rag_pipeline
 from modules.error_handler import (
     RAGAssistantError, DocumentProcessingError, PDFProcessingError,
-    EmbeddingGenerationError, LLMProcessingError, MemoryError,
+    LLMProcessingError, MemoryError,
     get_logger, handle_exceptions, error_context, memory_monitor,
     ProgressTracker, ValidationUtils, HealthChecker
 )
