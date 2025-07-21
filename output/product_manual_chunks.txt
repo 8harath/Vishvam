@@ -1,0 +1,12 @@
+=== CHUNK 1 ===
+SmartHome Pro WiFi Router Model X500 User Manual and Warranty Information PRODUCT OVERVIEW The SmartHome Pro X500 is a high-performance WiFi 6 router designed for modern homes. Features dual-band connectivity, advanced security, and smart device management. TECHNICAL SPECIFICATIONS - WiFi Standard: IEEE 802.11ax (WiFi 6) - Maximum Speed: Up to 3000 Mbps - Frequency Bands: 2.4GHz and 5GHz - Coverage: Up to 3000 sq ft - Ethernet Ports: 4 Gigabit LAN ports - Power Consumption: 25W maximum SETUP
+
+=== CHUNK 2 ===
+t LAN ports - Power Consumption: 25W maximum SETUP INSTRUCTIONS 1. Connect the power adapter to the router and plug into wall outlet 2. Connect ethernet cable from modem to WAN port on router 3. Download the SmartHome app from your device app store 4. Follow in-app setup wizard to configure network settings 5. Create your WiFi network name and password TROUBLESHOOTING Problem: No internet connection Solution: Check all cable connections and restart both modem and router Problem: Slow speeds
+
+=== CHUNK 3 ===
+restart both modem and router Problem: Slow speeds Solution: Place router in central location away from interference Problem: Cannot connect devices Solution: Reset router by holding reset button for 10 seconds WARRANTY INFORMATION LIMITED WARRANTY: This product is covered under a 3-year limited warranty from the date of purchase. Warranty covers manufacturing defects only. WARRANTY EXCLUSIONS: Damage from misuse, water, or power surges not covered.
+
+=== CHUNK 4 ===
+e from misuse, water, or power surges not covered. TO CLAIM WARRANTY: Contact SmartHome support at 1-800-SMARTHOME or visit support.smarthomepro.com with proof of purchase. REPLACEMENT: Defective units will be replaced free of charge during warranty period. Customer responsible for return shipping costs. CUSTOMER SUPPORT Phone: 1-800-SMARTHOME (24/7 support) Email: support@smarthomepro.com Website: www.smarthomepro.com/support Live Chat: Available on website 9AM-9PM EST
+

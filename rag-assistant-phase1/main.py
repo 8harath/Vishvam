@@ -14,166 +14,16 @@ from modules.pdf_parser import PDFParser
 from modules.text_splitter import TextSplitter
 from modules.embedder import create_embedder
 from modules.vector_store import RAGRetriever
+from modules import speech_module, multilingual
 
-def main():
-    """Main CLI application."""
-    parser = argparse.ArgumentParser(
-        description="RAG Assistant Phase 1 - PDF Text Extraction Demo",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  python main.py --pdf sample_data/sample_document.pdf
-  python main.py --pdf sample_data/sample_document.pdf --info
-  python main.py --pdf sample_data/sample_document.pdf --chunk
-  python main.py --pdf sample_data/sample_document.pdf --chunk --chunk-size 300 --chunk-overlap 30
-  python main.py --pdf sample_data/sample_document.pdf --pages --chunk
-  python main.py --help
-        """
-    )
-    
-    parser.add_argument(
-        "--pdf", 
-        type=str, 
-        help="Path to PDF file to process"
-    )
-    
-    parser.add_argument(
-        "--info", 
-        action="store_true", 
-        help="Display PDF metadata information"
-    )
-    
-    parser.add_argument(
-        "--pages", 
-        action="store_true", 
-        help="Extract text page by page"
-    )
-    
-    parser.add_argument(
-        "--chunk", 
-        action="store_true", 
-        help="Split extracted text into chunks"
-    )
-    
-    parser.add_argument(
-        "--chunk-size", 
-        type=int, 
-        default=500, 
-        help="Size of each text chunk in characters (default: 500)"
-    )
-    
-    parser.add_argument(
-        "--chunk-overlap", 
-        type=int, 
-        default=50, 
-        help="Overlap between chunks in characters (default: 50)"
-    )
-    
-    args = parser.parse_args()
-    
-    if not args.pdf:
-        parser.print_help()
-        return
-    
-    # Initialize PDF parser
-    pdf_parser = PDFParser()
-    
-    print(f"🔍 Processing PDF: {args.pdf}")
-    print("-" * 50)
-    
-    try:
-        # Show PDF info if requested
-        if args.info:
-            print("📄 PDF Information:")
-            info = pdf_parser.get_pdf_info(args.pdf)
-            for key, value in info.items():
-                print(f"  {key}: {value}")
-            print()
-        
-        # Extract text page by page if requested
-        if args.pages:
-            print("📑 Extracting text page by page:")
-            pages = pdf_parser.extract_text_by_page(args.pdf)
-            for i, page_text in enumerate(pages, 1):
-                print(f"\n--- Page {i} ---")
-                print(page_text[:200] + "..." if len(page_text) > 200 else page_text)
-        else:
-            # Extract all text
-            print("📝 Extracted Text:")
-            text = pdf_parser.extract_text_from_pdf(args.pdf)
-            
-            if text:
-                print(f"✅ Successfully extracted {len(text)} characters")
-                print("-" * 50)
-                
-                # Chunk text if requested
-                if args.chunk:
-                    print(f"🧩 Chunking text (size: {args.chunk_size}, overlap: {args.chunk_overlap})")
-                    text_splitter = TextSplitter(
-                        chunk_size=args.chunk_size, 
-                        chunk_overlap=args.chunk_overlap
-                    )
-                    chunks = text_splitter.chunk_text(text)
-                    stats = text_splitter.get_chunk_stats(chunks)
-                    
-                    print(f"✅ Generated {stats['total_chunks']} chunks")
-                    print(f"   Average chunk size: {stats['average_chunk_size']:.1f} characters")
-                    print(f"   Size range: {stats['min_chunk_size']} - {stats['max_chunk_size']} characters")
-                    print("-" * 50)
-                    
-                    # Show first few chunks as preview
-                    for i, chunk in enumerate(chunks[:3], 1):
-                        print(f"\n📄 Chunk {i} ({len(chunk)} chars):")
-                        preview = chunk[:200] + "..." if len(chunk) > 200 else chunk
-                        print(preview)
-                    
-                    if len(chunks) > 3:
-                        print(f"\n... and {len(chunks) - 3} more chunks")
-                else:
-                    # Show first 500 characters as preview
-                    preview = text[:500] + "..." if len(text) > 500 else text
-                    print(preview)
-                    
-                    if len(text) > 500:
-                        print(f"\n[Showing first 500 characters of {len(text)} total]")
-            else:
-def semantic_search_demo():
-    """Demonstrate semantic search capabilities (Step 5)."""
-    print("\n🔍 SEMANTIC SEARCH DEMO (Step 5)")
-    print("=" * 50)
-    
-    try:
-        # Sample documents
-        documents = [
-            "Machine learning is a powerful subset of artificial intelligence.",
-            "Deep learning uses neural networks with multiple layers.",
-            "Natural language processing helps computers understand human language.",
-            "Computer vision enables machines to interpret visual information."
-        ]
-        
-        # Initialize components
-        embedder = create_embedder()
-        retriever = RAGRetriever(embedder)
-        
-        # Add documents
-        retriever.add_documents(documents)
-        print(f"✅ Added {len(documents)} documents to search index")
-        
-        # Test queries
-        queries = ["What is machine learning?", "How do neural networks work?"]
-        
-        for query in queries:
-            print(f"\n🔍 Query: '{query}'")
-            results = retriever.retrieve(query, k=2)
-            
-            for i, (chunk, score, _) in enumerate(results, 1):
-                print(f"  {i}. Score: {score:.3f} - {chunk}")
-        
-        print("\n✅ Semantic search demo completed!")
-        
-    except Exception as e:
-        print(f"❌ Semantic search demo failed: {e}")
-
+def get_user_query():
+    mode = input("Choose input mode: [1] Text [2] Voice : ").strip()
+    if mode == "2":
+        query = speech_module.speech_to_text()
+        print(f"You said: {query}")
+    else:
+        query = input("Enter your query: ")
+    return query
 
 def main():
     """Main CLI application."""
@@ -300,6 +150,40 @@ Examples:
                     print(f"  {i}. Score: {score:.3f} - {preview}")
             else:
                 print("  No relevant chunks found")
+        
+        print("\n🗣️  Entering interactive Q&A mode. Type 'exit' to quit.")
+        while True:
+            user_query = get_user_query()
+            if not user_query or user_query.strip().lower() == "exit":
+                print("Exiting interactive mode.")
+                break
+
+            # Multilingual support
+            lang = multilingual.detect_language(user_query)
+            if lang != 'en':
+                query_en = multilingual.translate_to_english(user_query, src_lang=lang)
+            else:
+                query_en = user_query
+
+            # Retrieve answer from RAG
+            results = retriever.retrieve(query_en, k=2, min_similarity=0.1)
+            if results:
+                answer_en = results[0][0]  # Take the top chunk as answer
+            else:
+                answer_en = "Sorry, I could not find a relevant answer in the document."
+
+            # Translate answer back if needed
+            if lang != 'en':
+                answer = multilingual.translate_from_english(answer_en, dest_lang=lang)
+            else:
+                answer = answer_en
+
+            print("Answer:", answer)
+
+            # Optional: Voice output
+            out_mode = input("Would you like to hear the answer? [y/N]: ").strip().lower()
+            if out_mode == "y":
+                speech_module.text_to_speech(answer, lang=lang)
         
     except FileNotFoundError as e:
         print(f"❌ Error: {e}")
