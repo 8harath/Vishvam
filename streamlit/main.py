@@ -30,11 +30,40 @@ from gtts import gTTS
 import speech_recognition as sr
 import tempfile, base64
 import requests, time
+import sqlite3
+from datetime import datetime
+import pandas as pd
 
 # ——— Configuration ———
 GENAI_API_KEY = "AIzaSyA5xtoT9HAjH-wsa7OHFXlBjRRcXwCFBMg"
-DID_API_KEY = "a3ZpcGFyeWExQGdtYWlsLmNvbQ:CcPcUZ9Lylz6kWnA0QJMj"
+DID_API_KEY = "a3Jpc2huYW12aXB1bEBnbWFpbC5jb20:5DSNuJuWUBZQ0G44TfJlJ"
 AVATAR_IMAGE_URL = "https://raw.githubusercontent.com/de-id/live-streaming-demo/main/alex_v2_idle_image.png"
+
+# ——— SQLite DB Setup ———
+def init_db():
+    conn = sqlite3.connect("interactions.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS interactions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            timestamp TEXT,
+            language TEXT,
+            question TEXT,
+            answer TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+def save_interaction(language: str, question: str, answer: str):
+    conn = sqlite3.connect("interactions.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO interactions (timestamp, language, question, answer)
+        VALUES (?, ?, ?, ?)
+    """, (datetime.now().isoformat(), language, question, answer))
+    conn.commit()
+    conn.close()
 
 # ——— RAGSingleLanguage class ———
 class RAGSingleLanguage:
@@ -92,9 +121,7 @@ class RAGSingleLanguage:
 
     def answer_question(self, question: str, top_k: int = 5) -> str:
         q_en = self.translate(question, 'en')
-        q_emb = self.embedder.encode([
-            q_en
-        ], convert_to_numpy=True, normalize_embeddings=True)
+        q_emb = self.embedder.encode([q_en], convert_to_numpy=True, normalize_embeddings=True)
         doc_embeds = self.embeddings / np.linalg.norm(self.embeddings, axis=1, keepdims=True)
         sims = cosine_similarity(q_emb, doc_embeds)[0]
         top_indices = np.argsort(sims)[::-1][:top_k]
@@ -175,6 +202,7 @@ def generate_did_avatar_video(answer_text: str, image_url: str) -> str:
 
 # ——— Main App ———
 def main():
+    init_db()
     st.set_page_config(page_title="Voice‑Viz RAG", page_icon="🔊")
     st.title("🔊 AI Helpdesk")
 
@@ -229,6 +257,9 @@ def main():
                 answer = st.session_state.rag.answer_question(question)
             st.markdown(f"**Answer ({sel}):** {answer}")
 
+            # Save to DB
+            save_interaction(st.session_state.lang, question, answer)
+
             with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
                 gTTS(text=answer, lang=st.session_state.lang).save(fp.name)
                 mp3_bytes = open(fp.name, "rb").read()
@@ -250,7 +281,6 @@ def main():
               source.connect(analyser);
               analyser.connect(audioCtx.destination);
               const data = new Uint8Array(analyser.frequencyBinCount);
-
               function drawLine() {{
                 requestAnimationFrame(drawLine);
                 analyser.getByteTimeDomainData(data);
@@ -262,7 +292,6 @@ def main():
                 const rms = Math.sqrt(sum/data.length);
                 const maxLen = canvas.width / 2 * (rms/128);
                 const y = canvas.height / 2;
-
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.beginPath();
                 ctx.moveTo((canvas.width / 2) - maxLen, y);
@@ -271,7 +300,6 @@ def main():
                 ctx.strokeStyle = '#4CAF50';
                 ctx.stroke();
               }}
-
               audio.onplay = () => {{
                 audioCtx.resume().then(() => drawLine());
               }};
@@ -287,6 +315,13 @@ def main():
                     st.video(video_url)
                 else:
                     st.error("Failed to load avatar video.")
+
+    # Optional: Admin view of interactions
+    if st.sidebar.checkbox("📜 Show Past Interactions"):
+        conn = sqlite3.connect("interactions.db")
+        df = pd.read_sql_query("SELECT * FROM interactions ORDER BY timestamp DESC", conn)
+        st.sidebar.dataframe(df)
+        conn.close()
 
 if __name__ == "__main__":
     main()
