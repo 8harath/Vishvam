@@ -1,0 +1,10 @@
+streamlit
+PyPDF2
+numpy
+langdetect
+scikit-learn
+sentence-transformers
+google-generativeai
+gTTS
+SpeechRecognition
+requests
